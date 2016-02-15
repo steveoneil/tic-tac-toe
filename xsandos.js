@@ -9,39 +9,66 @@ var tokenMap =  { 'a': [1, 0, 0, 1, 0, 0, 1, 0],
                   'h': [0, 0, 2, 0, 1, 0, 0, 0],
                   'i': [0, 0, 1, 0, 0, 1, 1, 0]};
 
-// Object that keeps each player's score of the number of "tokens" collected for each path
-var score = { 'x': [0, 0, 0, 0, 0, 0, 0, 0],
-              'o': [0, 0, 0, 0, 0, 0, 0, 0]};
 
 $(document).on('ready', function() {
-  var turn = 0;
-  var player = '';
 
-  $('td').on('click', function() {
+  playGame();
 
-    var self = $(this);
-    var selection = self.attr('id');
+    // var playAgain;
 
-    turn % 2 ? player = 'o' : player = 'x';
+    function playGame () {
 
-    self.html(player);
-    self.off('click');
+      // Object that keeps each player's score of the number of "tokens" collected for each path
+      var score = { 'X': [0, 0, 0, 0, 0, 0, 0, 0],
+                    'O': [0, 0, 0, 0, 0, 0, 0, 0]};
 
-// Add tokens to players score (path array)
-    for (var i = 0; i < 7; i++) {
-      score[player][i] = score[player][i] + tokenMap[selection][i];
+      var turn = 0;
+
+
+      $('td').on('click', function() {
+
+        var self = $(this);
+        var selection = self.attr('id');
+        var player = '';
+
+        turn % 2 ? player = 'O' : player = 'X';
+
+        self.html(player);
+        self.off('click');
+
+    // Add tokens (for each path) to players score array
+        for (var i = 0; i < 7; i++) {
+          score[player][i] = score[player][i] + tokenMap[selection][i];
+        }
+
+        if ( checkForWinner(player) ) {
+          alert("Player " + player + " WINS!");
+          reset();
+        } else if (turn >= 8) {
+            alert("Draw....No Winner!");
+            reset();
+        }
+
+        turn++;
+
+      });
+
+      function checkForWinner(player) {
+        return !score[player].every(element => element < 4);
+      }
+
+      function reset() {
+        $('td').off('click');
+        $('td').html('');
+        // playAgain = true;
+        // return playAgain;
+        playGame();
+      }
+
     }
 
-    if ( checkForWinner(player) ) {
-      alert("Player " + player + " WINS!")
-      $('td').off('click');
-    }
+  // if (playAgain) {
+  //   playGame();
+  // }
 
-    turn++;
-  });
-
-  function checkForWinner(player) {
-    return !score[player].every(element => element < 4);
-
-  }
 });
