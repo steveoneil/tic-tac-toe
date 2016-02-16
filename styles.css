@@ -1,10 +1,57 @@
+*,
+*::before,
+*::after {
+ box-sizing: inherit;
+}
+
+header {
+  height: 150px;
+}
+
+body {
+  width: 75%;
+  margin: 0 auto;
+  background-color: burlywood;
+}
+
+.title {
+  text-align: center;
+}
+
 td {
   font-family: Helvetica, sans-serif;
-  font-size: 200px;
-  color: blue;
-  border: 3px solid black;
+  font-size: 180px;
+  color: darkred;
+  border-width: thick;
+  border: 14px solid black;
   width: 300px;
   height: 300px;
   text-align: center;
   cursor: pointer;
+  opacity: 1;
+}
+
+.bottom {
+  border-bottom: none;
+}
+
+.top {
+  border-top: none;
+}
+
+.left {
+  border-left: none;
+}
+
+.right {
+  border-right: none;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+p {
+  font-size: 50px;
 }
