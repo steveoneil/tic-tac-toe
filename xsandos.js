@@ -59,7 +59,8 @@ $(document).on('ready', function() {
         score[player][i] = score[player][i] + tokenMap[selection][i];
       }
     }
-
+    
+    // Return false as long as player has no path that reaches 4 tokens
     function checkForWinner(player) {
       return !score[player].every(element => element < 4);
     }
