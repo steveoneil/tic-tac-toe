@@ -31,7 +31,6 @@ $(document).on('ready', function() {
 
       turn % 2 ? player = 'O' : player = 'X';
 
-      // self.css('opacity', 1);
       self.html(player).css('opacity', 1).animate({
         fontSize: '300',
       }, 500);
@@ -54,9 +53,9 @@ $(document).on('ready', function() {
 
     });
 
-    // Add tokens (for each path) to players score array
+    // Add tokens (for each path) to player's score array
     function addScore(player, selection) {
-      for (var i = 0; i < 7; i++) {
+      for (var i = 0; i <= 7; i++) {
         score[player][i] = score[player][i] + tokenMap[selection][i];
       }
     }
@@ -67,7 +66,6 @@ $(document).on('ready', function() {
 
     function reset() {
       $('td').off('click');
-      // $('td').css('opacity' 1);
       playGame();
     }
 
